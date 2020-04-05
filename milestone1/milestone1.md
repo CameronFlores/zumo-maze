@@ -5,7 +5,7 @@
 - [x] set up github repository
 - [x] set up markdown format
 - [x] unbox zumo and write milestone 1 code
-- [] take picture and video evidence
+- [ ] take picture and video evidence
 
 ### Proof
 
