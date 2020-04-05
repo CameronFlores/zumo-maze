@@ -1,7 +1,7 @@
 #include <ZumoShield.h>
 
 ZumoMotors motors;
-
+boolean move = true;
 
 void setup() {
   // put your setup code here, to run once:
@@ -9,12 +9,14 @@ void setup() {
 }
 
 void loop() {
-  
-motors.setLeftSpeed(100);
+
+  while(move){
+motors.setLeftSpeed(106);
 motors.setRightSpeed(100);
-delay(4000);
+delay(8500);
 motors.setLeftSpeed(0);
 motors.setRightSpeed(0);
-delay(4000);
+move = false;
+  }
 
 }
