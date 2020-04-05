@@ -7,9 +7,9 @@
 - [x] unbox zumo and write milestone 1 code
 - [ ] take picture and video evidence
 
-### Proof
+## Proof
 
-### Notes
-## Problems
+## Notes
+### Problems
 The zumo drifts slightly to the left so to fix this I slightly increased the speed of the left wheel. 
 
