@@ -1,5 +1,5 @@
 # Milestone 2
-## Create your own code that moves the Zumo at least 4 feet
+## Get the Zumo to follow a line on the floor for at least 4 feet
 
 ## Proof
 
