@@ -5,8 +5,10 @@
 
 
 ## Notes
+### PD Control
+
+
+### Max Speed
 
 
 ## Problems
-The zumo drifts slightly to the left so to fix this I slightly increased the speed of the left wheel. 
-
