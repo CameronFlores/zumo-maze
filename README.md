@@ -1,4 +1,8 @@
 # zumo-maze
+
+## Links
+Incase of mislinks all milestones are at https://www.youtube.com/channel/UCrdvNWfjYOvKtk3ze1h3ghQ
+
 ## Milestones
 - [x] Milestone 1- Create your own code that moves the Zumo at least 4 feet
 - [x] Milestone 2- Get the Zumo to follow a line on the floor for at least 4 feet
