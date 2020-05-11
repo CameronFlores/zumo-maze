@@ -11,8 +11,8 @@ After trial and error I found that the max speed for straight lines is 250 and t
 Addressing one of the problems I stated below, I modified the runSolvedMaze() function to speed up to 400 when I want to run straight through an intersection (because I don't have to worry about calculations or the positioning of the sensors) and slow down to 300 and 250 when a turn is coming.
 
 ## Problems
-To further optimize I could use millis() to record how long it takes to go one unit and relative to this information map a distance between turns and intersections allowing for speed ups between every turn and intersection.
+* To further optimize I could use millis() to record how long it takes to go one unit and relative to this information map a distance between turns and intersections. If I could record not just turns but units themselves I would be able to run a path without reading any intersectinos at all.
 
-Ballistic turning does not work. For whatever reason trying to use ballistic turning in this format results in the robot's sensors not reading any turns and repeatedly u-turning. I had to rely on the tutorial's sensor-based turning instead.
+* Ballistic turning does not work. For whatever reason trying to use ballistic turning in this format results in the robot's sensors not reading any turns and repeatedly u-turning. I had to rely on the tutorial's sensor-based turning instead. Additionally, using a hybrid-turning system seems to just make the robot turn too far.
 
-There is no shorter path than the one calculated by the tutorial code. My depth-first-search method wasn't working so I simplified things and followed the tutorial code.
+* There is no shorter path than the one calculated by the tutorial code. My depth-first-search method wasn't working so I simplified things and followed the tutorial code.
