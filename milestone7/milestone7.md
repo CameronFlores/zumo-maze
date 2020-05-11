@@ -3,6 +3,7 @@
 Time to beat: 15s
 ## Proof
 https://www.youtube.com/watch?v=CHDmdfwsvJ8
+
 13s
 ## Notes
 ### Max Speed
