@@ -2,7 +2,7 @@
 ## Get the Zumo to solve a maze with branching and then repeat the maze and follow a memorized path
 Time to beat: 15s
 ## Proof
-
+https://www.youtube.com/watch?v=CHDmdfwsvJ8
 13s
 ## Notes
 ### Max Speed
