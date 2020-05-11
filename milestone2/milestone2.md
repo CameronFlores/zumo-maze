@@ -7,6 +7,18 @@
 ## Notes
 ### Max Speed
 While I found no need to greatly change the proportion gain I found that 300 was a reliable BASE_SPEED. 
+As I needed help in all aspects of learning how to work the zumo I went straight to the tutorial, this is how I understand the variables:
+### Loop
+sensor_vals
+THRESHOLD 
+BASE_SPEED
+line_position
+### follow_line
+PROPRTION_GAIN
+DERIVATIVE_GAIN
+last_error
+error
+left_speed
 
 ## Problems
 ### Callibration
