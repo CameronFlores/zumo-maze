@@ -3,7 +3,7 @@
 This milestone is simply a matter of combining the previous milestones and adding a right turn function.
 
 ## Proof
-
+https://www.youtube.com/watch?v=3s-mwgOtqvA
 
 ## Notes
 ### Max Speed
