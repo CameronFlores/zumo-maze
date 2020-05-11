@@ -1,9 +1,9 @@
 # Milestone 7
 ## Get the Zumo to solve a maze with branching and then repeat the maze and follow a memorized path
-
+Time to beat: 15s
 ## Proof
 
-
+13s
 ## Notes
 ### Max Speed
 After trial and error I found that the max speed for straight lines is 250 and turns is 300 (I'm assuming we are forced to use lower values to compensate since there are more calculations to be done).
@@ -18,3 +18,5 @@ Addressing the first problem I stated below, I modified the runSolvedMaze() func
 * There is no shorter path than the one calculated by the tutorial code. My depth-first-search method wasn't working so I simplified things and followed the tutorial code.
 
 * We could possibly go faster with a smaller derivative variable and a different error threshold though I didn't bother messing with it as inaccuracies and misreading turns is already happening and I didn't htink it was much of a factor since we're only dealing with straight lines.
+
+* The last thing I would change would be the turning, each turning overshoots a requires a pause to calibrate and move. It would be better if we under shot so that turning would take less time and we could just recalibrate the inaccuracy. Unfortunately, the only way I could think of doing this while still turning at a high rate would be by uusing ballistic turning which does not work in this format.
