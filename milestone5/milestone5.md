@@ -2,7 +2,7 @@
 ## Get the Zumo to solve a maze with branching
 
 ## Proof
-
+https://www.youtube.com/watch?v=OEinZ59EXVA
 
 ## Notes
 ### left wall algorithm
