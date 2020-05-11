@@ -9,6 +9,6 @@
 - [x] Milestone 7 Have a final run in the practice maze of under XX seconds. (Will set this time once I have a practice maze up and running...)
 
 Process:
-In the rules we're told we're only timed for the second run of the maze meaning we can autonomously map the maze out for as long as we like. This means time improvements must come through efficent movements (moving the robot at max speed, speeding up where we know we don't need to turn), short sensor pauses (as soon as you read a turn or intersection use ballastic movement to immediately take a turn), and an optimal shortest path algorithm.
+In the rules we're told we're only timed for the second run of the maze meaning we can autonomously map the maze out for as long as we like. This means time improvements must come through efficent movements (moving the robot at max speed, speeding up where we know we don't need to turn), short sensor pauses (as soon as you read a turn or intersection use ballastic movement to immediately take a turn), and an optimal shortest path algorithm (though the one given seems sufficient).
 
 With this in mind my goal is to play around with and understand the tutorials in order to find the max speeds that I can move and sense with.
