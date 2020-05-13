@@ -2,7 +2,9 @@
 ## Get the Zumo to solve a maze with branching
 
 ## Proof
-https://www.youtube.com/watch?v=OEinZ59EXVA
+
+[![Milestone 5](http://img.youtube.com/vi/OEinZ59EXVA/0.jpg)](https://www.youtube.com/watch?v=OEinZ59EXVA "Milestone 5")
+
 
 ## Notes
 ### left wall algorithm
