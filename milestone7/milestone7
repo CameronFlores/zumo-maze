@@ -247,7 +247,7 @@ void runSolvedMaze(){
   runSolvedMaze();
 }
 
-// shortest path should be [L, S, S, R, L, L, R, R, S, R, R, L, R, L, R]
+
 void path_reduce(){
   bool flag = false;  
   for(int path_location=2; path_location < turn_counter; path_location++){
