@@ -2,7 +2,8 @@
 ## Get the Zumo to follow a line on the floor for at least 4 feet
 
 ## Proof
-https://www.youtube.com/watch?v=DObMGvQM3i0
+[![Milestone 2](http://img.youtube.com/vi/DObMGvQM3i0/0.jpg)](https://www.youtube.com/watch?v=DObMGvQM3i0 "Milestone 2")
+
 
 ## Notes
 ### Max Speed
