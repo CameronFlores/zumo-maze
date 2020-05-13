@@ -75,6 +75,22 @@ void turn_priority() {
 
 While this solution (and other similar versions of this code) worked for the most part it had numerous problems.
 * Jerky at intersections, always swerves in order to straighten itself. howeber this could be attributed to the ballastic turning functions
+```
+void turn_left() {
+  motors.setSpeeds(-500, 500);
+  delay(100);
+}
+
+void turn_right() {
+  motors.setSpeeds(500, -500);
+  delay(100);
+}
+
+void u_turn() {
+  motors.setSpeeds(-500, 500);
+  delay(150);
+}
+```
 * Difficulty implementing finish_counter. Required that all sensors were triggered for a long period of time. Occassionally resulted in intersections with a left and right turn pausing the zumo 
 
 While this solution works I defaulted to the tutorial code as it wasn't jerky at the intersections and was better suited for implementing finish_counter. 
