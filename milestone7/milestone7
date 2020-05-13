@@ -249,11 +249,15 @@ void runSolvedMaze(){
 
 
 void path_reduce(){
+// check for swap
   bool flag = false;  
+  
   for(int path_location=2; path_location < turn_counter; path_location++){
+  // if there was a swap
     if(flag){
       path[path_location-2] = path[path_location];
-    } else if(path[path_location-1] == 'U'){
+    } 
+    else if(path[path_location-1] == 'U'){
       char a = path[path_location - 2];
       char b = path[path_location];
       char c = ' ';
@@ -293,13 +297,17 @@ void path_reduce(){
       flag = true;
     }
   }
+  // if there was a swap call the function again
   if(flag){
     turn_counter = turn_counter - 2;
     path[turn_counter] = ' ';
     path[turn_counter + 1] = ' ';
     path_reduce();
-  } else {
+  } 
+  // if not there are no more U-Turns
+  else {
     return;
   }
 }
+
 
