@@ -17,4 +17,4 @@ In the rules we're told we're only timed for the second run of the maze meaning 
 
 Consult tutorial code for format and variable names. This way the logic will translate to the next tutorial.
 
-With this in mind my goal is to try the zumo myself, make it match with the tutorials if the tutorials run better, and then play arouund with the end result looking for optimizations, max speed, and in order to get a good enough understanding of the code to make notebook entries of my understanding of the code and gain the ability to better modify it once I reach milestone 7.
+With this in mind my goal is to code for myself, make it match with the tutorials if the tutorials run better, and then play arouund with the end result looking for optimizations, max speed, and in order to get a good enough understanding of the code to make notebook entries of my understanding of the code and gain the ability to better modify it once I reach milestone 7.
