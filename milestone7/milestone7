@@ -3,7 +3,6 @@
 
 ZumoMotors motors;
 ZumoReflectanceSensorArray linesensors(QTR_NO_EMITTER_PIN);
-ZumoBuzzer buzzer;
 Pushbutton button(ZUMO_BUTTON);
 
 void setup() {
@@ -103,7 +102,6 @@ int get_intersection_type() {
 
     finish_counter++;
     if(finish_counter > 60){
-      //buzzer.play("O6c32d32e32f32g32");
       return FINISH;
     }
   }
@@ -111,27 +109,21 @@ int get_intersection_type() {
   bool line_straight = sensor_vals[2] > THRESHOLD || sensor_vals[3] > THRESHOLD;
 
   if(!line_straight && line_on_left_ever && line_on_right_ever) {
-    buzzer.play("O6c32c32c32");
     return INTERSECTION_T;
   }
   if(line_straight && line_on_left_ever && line_on_right_ever){
-    buzzer.play("O6c32e32c32");
     return INTERSECTION_CROSS;
   }
   if(!line_straight && !line_on_right_ever){
-    buzzer.play("O6c32d32e32");
     return INTERSECTION_LEFT_TURN;
   }
   if(!line_straight && !line_on_left_ever){
-    buzzer.play("O6e32d32c32");
     return INTERSECTION_RIGHT_TURN;
   }
   if(line_straight && !line_on_right_ever){
-    buzzer.play("O6e32d32e32");
     return INTERSECTION_LEFT_T;
   }
   if(line_straight && !line_on_left_ever){
-    buzzer.play("O6c32d32c32");
     return INTERSECTION_RIGHT_T;
   }
 }
@@ -171,26 +163,21 @@ void solved(){
   path_reduce();
   for(int i=0; i<turn_counter+1; i++){
     if(path[i] == 'L'){
-      buzzer.playNote(NOTE_C(6), 100, 15);
       delay(200);
     }
     if(path[i] == 'R'){
-      buzzer.playNote(NOTE_E(6), 100, 15);
       delay(200);
     }
     if(path[i] == 'S'){
-      buzzer.playNote(NOTE_G(6), 100, 15);
       delay(200);
     }
     if(path[i] == 'U'){
-      buzzer.playNote(NOTE_C(7), 100, 15);
       delay(200);
     }
   }
   
   button.waitForButton();
 
-  buzzer.play("O6 d32a32");
   delay(1000);
   
   runSolvedMaze();
@@ -226,7 +213,6 @@ void runSolvedMaze(){
       
       if(solved_path_location == turn_counter){
         motors.setSpeeds(0,0);
-        buzzer.play("!T250 O4 L8 g O5 ceg O6 ceg4.e4. O4 a- O5 ce-a- O6 ce-a-4.e-4. O4 b- O5 dfb- O6 df b-4r MS b-b-b- ML O7 c2.");
         break;
       }
       
@@ -258,9 +244,6 @@ void runSolvedMaze(){
   }
   button.waitForButton();
 
-  buzzer.play("O6 d32a32");
-  delay(1000);
-  
   runSolvedMaze();
 }
 
