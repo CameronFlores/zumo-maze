@@ -77,5 +77,5 @@ While this solution (and other similar versions of this code) worked for the mos
 * Jerky at intersections, always swerves in order to straighten itself. howeber this could be attributed to the ballastic turning functions
 * Difficulty implementing finish_counter. Required that all sensors were triggered for a long period of time. Occassionally resulted in intersections with a left and right turn pausing the zumo 
 
-While this solution works I defaulted to the tutorial code as it wasn't jerky at the intersections and was better suited for implementing finish_couunter
+While this solution works I defaulted to the tutorial code as it wasn't jerky at the intersections and was better suited for implementing finish_counter. 
 
