@@ -3,7 +3,6 @@
 
 ZumoMotors motors;
 ZumoReflectanceSensorArray linesensors(QTR_NO_EMITTER_PIN);
-ZumoBuzzer buzzer;
 
 void setup() {
   int i;
@@ -103,7 +102,6 @@ int get_intersection_type() {
 
     finish_counter++;
     if(finish_counter > 60){
-      //buzzer.play("O6c32d32e32f32g32");
       return FINISH;
     }
   }
@@ -111,27 +109,21 @@ int get_intersection_type() {
   bool line_straight = sensor_vals[2] > THRESHOLD || sensor_vals[3] > THRESHOLD;
 
   if(!line_straight && line_on_left_ever && line_on_right_ever) {
-    buzzer.play("O6c32c32c32");
     return INTERSECTION_T;
   }
   if(line_straight && line_on_left_ever && line_on_right_ever){
-    buzzer.play("O6c32e32c32");
     return INTERSECTION_CROSS;
   }
   if(!line_straight && !line_on_right_ever){
-    buzzer.play("O6c32d32e32");
     return INTERSECTION_LEFT_TURN;
   }
   if(!line_straight && !line_on_left_ever){
-    buzzer.play("O6e32d32c32");
     return INTERSECTION_RIGHT_TURN;
   }
   if(line_straight && !line_on_right_ever){
-    buzzer.play("O6e32d32e32");
     return INTERSECTION_LEFT_T;
   }
   if(line_straight && !line_on_left_ever){
-    buzzer.play("O6c32d32c32");
     return INTERSECTION_RIGHT_T;
   }
 }
@@ -168,24 +160,6 @@ void u_turn() {
 
 void solved(){
   motors.setSpeeds(0,0);
-  for(int i=0; i<turn_counter+1; i++){
-    if(path[i] == 'L'){
-      buzzer.playNote(NOTE_C(6), 100, 15);
-      delay(200);
-    }
-    if(path[i] == 'R'){
-      buzzer.playNote(NOTE_D(6), 100, 15);
-      delay(200);
-    }
-    if(path[i] == 'S'){
-      buzzer.playNote(NOTE_E(6), 100, 15);
-      delay(200);
-    }
-    if(path[i] == 'U'){
-      buzzer.playNote(NOTE_F(6), 100, 15);
-      delay(200);
-    }
-  }
   while(true){
     // do nothing!
   }
