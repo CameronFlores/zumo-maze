@@ -13,7 +13,23 @@ Addressing the first problem I stated below, I modified the runSolvedMaze() func
 
 ## Problems
 ### Using millis()
-I made a partner array (long path_time\[50\]) that recorded the difference of time between the end of one turn to the start of another turn. With this information I made a completely ballistic maze solver that didn't need to read sensors and didn't risk jerky movement at intersections I had problems with before. We take the time between turns (unused time in array gets deleted alongside path elements in path_reducer) and move forward at twice the speed in half the time.
+I made a partner array (long path_time\[50\]) that recorded the difference of time between the end of one turn to the start of another turn.
+```
+// we initialize currentTime = millis() after callibration
+void turn_left() {
+// -1 since it's incremented in the intersection dectector
+  path_time[turn_counter - 1] = millis() - currentTime;
+  motors.setSpeeds(-BASE_SPEED, BASE_SPEED);
+  while(sensor_vals[3] > THRESHOLD){
+    linesensors.read(sensor_vals);
+  }
+  while(sensor_vals[3] < THRESHOLD){
+    linesensors.read(sensor_vals);
+  }
+  currentTime = millis();
+}
+```
+With this information I made a completely ballistic maze solver that didn't need to read sensors and didn't risk jerky movement at intersections I had problems with before. We take the time between turns (unused time in array gets deleted alongside path elements in path_reducer, its elements are deleted in the same fashion as char path's) and move forward at twice the speed in half the time.
 And if there is a turn it is done ballastically and we go forward again until time is up and we perform the next turn.
 However:
 * Callibration was too difficult. While it was fast and moving in the correct, general direction each iteration made it slightly off track. It was too difficult to balance traction, uneven motors, and random error for this to work. I'd have to be really lucky to get an acceptable run given how many turns there are.
