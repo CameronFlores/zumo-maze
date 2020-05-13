@@ -15,4 +15,4 @@ Incase of mislinks all milestones are at https://www.youtube.com/channel/UCrdvNW
 Process:
 In the rules we're told we're only timed for the second run of the maze meaning we can autonomously map the maze out for as long as we like. This means time improvements must come through efficent movements (moving the robot at max speed, speeding up where we know we don't need to turn), short sensor pauses (as soon as you read a turn or intersection use ballastic movement to immediately take a turn), and an optimal shortest path algorithm (though the one given seems sufficient).
 
-With this in mind my goal is to play around with the tutorials and in order to get a good enough understanding of the code to make notebook entries of my understanding of the code and gain the ability to modify it for max speeds.
+With this in mind my goal is to play around with the tutorials and in order to get a good enough understanding of the code to make notebook entries of my understanding of the code and gain the ability to modify it for max speeds once I reach milestone 7.
