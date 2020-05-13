@@ -7,7 +7,7 @@ Time to beat: 15s
 About 13s (2 second improvement!)
 ## Notes
 ### Max Speed
-After trial and error I found that the max speed for straight lines is 250 and turns is 300 (I'm assuming we are forced to use lower values to compensate since there are more calculations to be done).
+After trial and error I found that the max speed for straight lines is 250 and turns is 300 (I'm assuming we are forced to use lower values as compared to previous Milestones in order to compensate since there are more calculations to be done).
 
 Addressing the first problem I stated below, I modified the runSolvedMaze() function to speed up to 400 when I want to run straight through an intersection (because I don't have to worry about calculations or the positioning of the sensors) and slow down to 300 and 250 when a turn is coming. (using the recorded array)
 
