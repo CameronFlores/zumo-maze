@@ -13,3 +13,10 @@ The most optimal path (or at least what we need to account for in this specific 
 
 ## Problems
 The only problem would be speed and performance, Since I used the same BASE_SPEED, THRESHOLD and other variables my zumo was only as fast the tutorial which everyone else has access to.
+
+### Path reduce
+Shortest path should be \[L, S, S, R, L, L, R, R, S, R, R, L, R, L, R\]
+
+No real problems with path reduce however...
+* There is no shorter path than the one calculated by the tutorial code and there is no need for improvement in this aspect
+* I originally formatted this function with a case statement for the character search and an if-else if statement for the total_angle search for the sake of optimizing however I noticed that it didn't matter as this function would be quickly computed after finishing the maze the first time around and this slight improve wouldn't show in the second run.
