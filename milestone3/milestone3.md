@@ -2,7 +2,8 @@
 ## Get the Zumo to follow a line along 2' x 2' square. (Create a square using the tape, 2ft on each side. Place the Zumo anywhere on the square and get it to follow the square for at least a full lap.)
 
 ## Proof
-https://www.youtube.com/watch?v=T22EU7nZnG8
+[![Milestone 3](http://img.youtube.com/vi/T22EU7nZnG8/0.jpg)](https://www.youtube.com/watch?v=T22EU7nZnG8 "Milestone 3")
+
 
 ## Notes
 ### Max Speed
