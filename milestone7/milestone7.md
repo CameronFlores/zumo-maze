@@ -2,8 +2,7 @@
 ## Get the Zumo to solve a maze with branching and then repeat the maze and follow a memorized path
 Time to beat: 15s
 ## Proof
-![Milestone 7](http://img.youtube.com/vi/CHDmdfwsvJ8/0.jpg)
-
+[![Milestone 7](http://img.youtube.com/vi/CHDmdfwsvJ8/0.jpg)](https://www.youtube.com/watch?v=CHDmdfwsvJ8 "Milestone 7")
 
 13s
 ## Notes
