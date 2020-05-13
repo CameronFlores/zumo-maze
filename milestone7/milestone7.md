@@ -21,11 +21,6 @@ However:
 ### Ballistic turning
 * Ballistic turning does not work. Again callibaration was too difficult and it put the zumo in positions where it didn't know how to handle what it was sensing. Instead I sped up the rotation of reactive turns to be higher, the only problem with this is a little time is lost when he robot occassionally turns too far and needs to straighten out and turning speed had a smaller limit than what would be possible with ballastic turning.
 
-### Path reduce
-No real problems with path reduce however...
-* There is no shorter path than the one calculated by the tutorial code and there is no need for improvement in this aspect
-* I originally formatted this function with a case statement for the character search and an if-else if statement for the total_angle search for the sake of optimizing however I noticed that it didn't matter as this function would be quickly computed after finishing the maze the first time around and this slight improve wouldn't show in the second run.
-
 ### Acceleration function
 * I also created a function that increased the BASE_SPEED every tenth second by 10 (using millis();) with a max speed of 300 if the upcoming turn was straight and decreased every tenth of a second by 10 with a min speed of 250 if the upcoming turn was left or right (slow down so that we can turn correctly). Essentially this would speed through intersections we go straight through and slow down when a turn is coming up
 * Unfortunately this method doesn't account for left or right turns that are far away from each other and don't need to slow down for awhile.
