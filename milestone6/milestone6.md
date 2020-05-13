@@ -2,7 +2,8 @@
 ## Get the Zumo to solve a maze with branching and then repeat the maze and follow a memorized path
 
 ## Proof
-https://www.youtube.com/watch?v=7Bb1Is0jDqo
+[![Milestone 6](http://img.youtube.com/vi/7Bb1Is0jDqo/0.jpg)](https://www.youtube.com/watch?v=7Bb1Is0jDqo "Milestone 6")
+
 
 ## Notes
 ### Turn recording
