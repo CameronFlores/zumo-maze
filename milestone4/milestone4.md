@@ -15,9 +15,13 @@ When turning we can go up to 500 as to half the tutorial's turning time and call
 Stop at T branch (we sense black on all sensors)
 ### Proprtional and Derivative Approach
 * error is how off center zumo is
+```
   int error = line_position - 2500;
+```
 * error_change is how off center zumo is compared to last error 
+```
   int error_change = error - last_error;
+```
 * PROPRTION_GAIN means slow down as we reach the center
 * DERIVATIVE_GAIN means if we're very off center we need to straighten ourselves quickly
 ```
