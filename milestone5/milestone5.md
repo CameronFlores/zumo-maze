@@ -43,8 +43,8 @@ while (line_on_left || line_on_right) {
         turn_counter++;
         turn_right();
       }
-    }
-    ```
+    } 
+```
 
 Notes/buzzer won't play. Had to debug by commenting out parts of the code and changing variables in a way that narrowed down possible errors. Most common error I found was going or turning too fast for the sensors to read.
 
