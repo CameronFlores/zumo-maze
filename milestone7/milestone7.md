@@ -28,4 +28,4 @@ However:
 ### Current method
 * I speed up when the upcoming turn is straight and slow down when an upcoming turn is left or right
 * Like the acceleration function this method doesn't account for left or right turns that are far away from each other. However what made this function faster was the fact that we had a constant high speed in places where the acceleration had gradually increasing speed
-* Given more time and testing I would improve this by combining this with my millis() idea and have the zumo run at high speeds until a path_time (changed to be proprtional to the speed of the car) is almost up. In this case we slow down at upcoming turns but only at the last second.
+* Given more time and testing I would improve this by combining this with my millis() idea and have the zumo run at high speeds until a path_time (changed to be proprtional to the speed of the car) is almost up. In this case we slow down at upcoming turns but only at the last second allowing for max speeds for as long as possible.
