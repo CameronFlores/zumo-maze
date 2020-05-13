@@ -54,8 +54,12 @@ double DERIVATIVE_GAIN = 3;
 int last_error = 0;
 void follow_line() {
   int line_position = linesensors.readLine(sensor_vals);
+  // error is how off center zumo is
   int error = line_position - 2500;
+  // error_change is how off center zumo is compared to last error 
   int error_change = error - last_error;
+  // PROPRTION_GAIN means slow down as we reach the center
+  // DERIVATIVE_GAIN means if we're very off center we need to straighten ourselves quickly
   int left_speed = BASE_SPEED + PROPORTION_GAIN * error + DERIVATIVE_GAIN * error_change;
   int right_speed = BASE_SPEED + -PROPORTION_GAIN * error + -DERIVATIVE_GAIN * error_change;
   last_error = error;
