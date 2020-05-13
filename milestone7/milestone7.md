@@ -4,7 +4,7 @@ Time to beat: 15s
 ## Proof
 [![Milestone 7](http://img.youtube.com/vi/CHDmdfwsvJ8/0.jpg)](https://www.youtube.com/watch?v=CHDmdfwsvJ8 "Milestone 7")
 
-13s
+About 13s (2 second improvement!)
 ## Notes
 ### Max Speed
 After trial and error I found that the max speed for straight lines is 250 and turns is 300 (I'm assuming we are forced to use lower values to compensate since there are more calculations to be done).
