@@ -12,7 +12,7 @@ As I needed help in all aspects of learning how to work the zumo I went straight
 ### follow_line
 PROPRTION_GAIN- helps center the robot based on line position.
 
-DERIVATIVE_GAIN- helps center the robot based on previous error, speed up when we're very off center but slow down once we're within a certain threshold.
+DERIVATIVE_GAIN- helps center the robot based on previous error, speed up when we're getting off center fast but slow down once we're within a certain threshold.
 
 ## Problems
 ### Callibration
