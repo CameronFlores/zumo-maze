@@ -11,6 +11,37 @@ After trial and error I found that the max speed for straight lines is 250 and t
 
 Addressing the first problem I stated below, I modified the runSolvedMaze() function to speed up to 400 when I want to run straight through an intersection (because I don't have to worry about calculations or the positioning of the sensors) and slow down to 300 and 250 when a turn is coming. (using the recorded array)
 
+### milestone7_incomplete
+* Fixed jerkyness. Found to be the zumo's attempt to follow a line while its sensors was messed up by the intersectino lines. Fixed by ignoring sensors for a short amount of time. 
+```
+  if (path[solved_path_location] == 'S') {
+        motors.setSpeeds(BASE_SPEED, BASE_SPEED);
+        delay(50);
+        follow_line();
+      }
+```
+* Fixed Milestone 5 turn priority function, all values put in loop, able to skip intersection detection altogether
+```
+  if (line_straight && !was_left && !was_right) {
+    follow_line();
+  }
+  else if (was_left) {
+    path[turn_counter] = 'L';
+    path_time[turn_counter] = millis() - currentTime;
+    turn_counter++;
+    turn_left();
+  }
+  else if (line_straight) {
+    path[turn_counter] = 'S';
+    path_time[turn_counter] = millis() - currentTime;
+    turn_counter++;
+    follow_line();
+  }
+  ...
+```
+* path_time- uses millis to measure the time it takes to get from one intersetion to another allowing zumo to speed up until the last moment when a turn is needed when using path reducer
+* incomplete path_reducer function- cannot correctly manipulate the path_time elements. I believe that when a u-turn is deleted the new time it takes is the path_time value of x (from xUy).
+
 ## Problems
 ### Using millis()
 I made a partner array (long path_time\[50\]) that recorded the difference of time between the end of one turn to the start of another turn.
