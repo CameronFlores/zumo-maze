@@ -1,0 +1,260 @@
+#include <Wire.h>
+#include <ZumoShield.h>
+
+ZumoMotors motors;
+ZumoReflectanceSensorArray linesensors(QTR_NO_EMITTER_PIN);
+Pushbutton button(ZUMO_BUTTON);
+long currentTime;
+
+void setup() {
+  int i;
+  int spin_direction = 1;
+  motors.setSpeeds(120 * spin_direction , -120 * spin_direction);
+  for (i = 0; i < 80; i++) {
+    linesensors.calibrate();
+    if (i % 40 == 20) { // every 50 loops, starting on loop 25...
+      spin_direction = -spin_direction;
+      motors.setSpeeds(120 * spin_direction , -120 * spin_direction);
+    }
+    delay(10);
+  }
+  motors.setSpeeds(0, 0);
+  delay(500);
+  currentTime = millis();
+}
+
+unsigned int sensor_vals[6];
+int THRESHOLD = 400;
+int BASE_SPEED = 200;
+int line_position;
+char path[50];
+long path_time[50];
+int turn_counter = 0;
+
+
+void loop() {
+  line_position = linesensors.readLine(sensor_vals);
+  int finish_counter = 0;
+  bool line_on_left = sensor_vals[0] > THRESHOLD;
+  bool line_on_right = sensor_vals[5] > THRESHOLD;
+
+  bool was_left = line_on_left;
+  bool was_right = line_on_right;
+
+  if (line_on_left || line_on_right) {
+    while (line_on_left || line_on_right) {
+      motors.setSpeeds(200, 200);
+      linesensors.readLine(sensor_vals);
+      line_on_left = sensor_vals[0] > THRESHOLD;
+      line_on_right = sensor_vals[5] > THRESHOLD;
+
+      was_left = line_on_left || was_left;
+      was_right = line_on_right || was_right;
+
+      finish_counter++;
+      if (finish_counter > 60) {
+        solved();
+      }
+    }
+  }
+  line_position = linesensors.readLine(sensor_vals);
+  bool line_straight = sensor_vals[2] > THRESHOLD || sensor_vals[3] > THRESHOLD;
+
+  if (line_straight && !was_left && !was_right) {
+    follow_line();
+  }
+  else if (was_left) {
+    path[turn_counter] = 'L';
+    path_time[turn_counter] = millis() - currentTime;
+    turn_counter++;
+    turn_left();
+  }
+  else if (line_straight) {
+    path[turn_counter] = 'S';
+    path_time[turn_counter] = millis() - currentTime;
+    turn_counter++;
+    follow_line();
+  }
+  else if (was_right) {
+    path[turn_counter] = 'R';
+    path_time[turn_counter] = millis() - currentTime;
+    turn_counter++;
+    turn_right();
+  }
+  else {
+    path[turn_counter] = 'U';
+    path_time[turn_counter] = millis() - currentTime;
+    turn_counter++;
+    u_turn();
+  }
+
+}
+
+void turn_left() {
+  motors.setSpeeds(-BASE_SPEED, BASE_SPEED);
+  while (sensor_vals[3] > THRESHOLD) {
+    linesensors.read(sensor_vals);
+  }
+  while (sensor_vals[3] < THRESHOLD) {
+    linesensors.read(sensor_vals);
+  }
+  currentTime = millis();
+}
+
+void turn_right() {
+  motors.setSpeeds(BASE_SPEED, -BASE_SPEED);
+  while (sensor_vals[2] > THRESHOLD) {
+    linesensors.read(sensor_vals);
+  }
+  while (sensor_vals[2] < THRESHOLD) {
+    linesensors.read(sensor_vals);
+  }
+  currentTime = millis();
+}
+
+void u_turn() {
+  motors.setSpeeds(-BASE_SPEED, BASE_SPEED);
+  while (sensor_vals[0] < THRESHOLD) {
+    line_position = linesensors.readLine(sensor_vals);
+  }
+  while (line_position > 3000 || line_position < 2000) {
+    line_position = linesensors.readLine(sensor_vals);
+  }
+  currentTime = millis();
+}
+
+
+void solved() {
+  motors.setSpeeds(0, 0);
+  path_reduce();
+
+  button.waitForButton();
+
+  delay(1000);
+
+  runSolvedMaze();
+}
+
+double PROPORTION_GAIN = 0.2;
+double DERIVATIVE_GAIN = 3;
+int last_error = 0;
+void follow_line() {
+  int error = line_position - 2500;
+  int error_change = error - last_error;
+  int left_speed = BASE_SPEED + PROPORTION_GAIN * error + DERIVATIVE_GAIN * error_change;
+  int right_speed = BASE_SPEED + -PROPORTION_GAIN * error + -DERIVATIVE_GAIN * error_change;
+  last_error = error;
+  motors.setSpeeds(left_speed, right_speed);
+}
+
+
+void runSolvedMaze() {
+  int solved_path_location = 0;
+  currentTime = millis();
+  while (true) {
+    line_position = linesensors.readLine(sensor_vals);
+
+    bool intersection_detected = sensor_vals[0] > THRESHOLD || sensor_vals[5] > THRESHOLD;
+
+    if (intersection_detected) {
+      if (solved_path_location == turn_counter) {
+        motors.setSpeeds(0, 0);
+        break;
+      }
+
+      if (path[solved_path_location] == 'S') {
+        motors.setSpeeds(BASE_SPEED, BASE_SPEED);
+        delay(50);
+        follow_line();
+      }
+      else if (path[solved_path_location] == 'L') {
+        turn_left();
+      }
+      else if (path[solved_path_location] == 'R') {
+        turn_right();
+      }
+      solved_path_location++;
+    }
+    // if no intersection
+    else {
+      long half_time = path_time[solved_path_location] / 2.0;
+      long slow_down = path_time[solved_path_location] / 4.0;
+      if ((millis() - currentTime) <= (half_time - slow_down)) {
+        BASE_SPEED = 300;
+        follow_line();
+      } 
+      else if (path[solved_path_location + 1] == 'S') {
+        BASE_SPEED = 300;
+        follow_line();
+      }
+      else {
+        BASE_SPEED = 200;
+        follow_line();
+      }
+    }
+  }
+  button.waitForButton();
+
+  delay(1000);
+
+  runSolvedMaze();
+}
+
+// shortest path should be [L, S, S, R, L, L, R, R, S, R, R, L, R, L, R]
+void path_reduce() {
+  bool flag = false;
+  for (int path_location = 2; path_location < turn_counter; path_location++) {
+    if (flag) {
+      path[path_location - 2] = path[path_location];
+      // path_time[path_location - 2] = path_time[path_location];
+    } else if (path[path_location - 1] == 'U') {
+      char a = path[path_location - 2];
+      char b = path[path_location];
+      char c = ' ';
+      int total_angle = 180;
+      if (a == 'L') {
+        total_angle += 270;
+      }
+      if (a == 'U') {
+        total_angle += 180;
+      }
+      if (a == 'R') {
+        total_angle += 90;
+      }
+      if (b == 'L') {
+        total_angle += 270;
+      }
+      if (b == 'U') {
+        total_angle += 180;
+      }
+      if (b == 'R') {
+        total_angle += 90;
+      }
+      total_angle = total_angle % 360;
+      if (total_angle == 0) {
+        c = 'S';
+      }
+      if (total_angle == 90) {
+        c = 'R';
+      }
+      if (total_angle == 180) {
+        c = 'U';
+      }
+      if (total_angle == 270) {
+        c = 'L';
+      }
+      path[path_location - 2] = c;
+      flag = true;
+    }
+  }
+  if (flag) {
+    turn_counter = turn_counter - 2;
+    path[turn_counter] = ' ';
+    path[turn_counter + 1] = ' ';
+    path_time[turn_counter - 1] = 0;
+    path_time[turn_counter] = 0;
+    path_reduce();
+  } else {
+    return;
+  }
+}
