@@ -11,7 +11,8 @@ After trial and error I found that the max speed for straight lines is 250 and t
 
 Addressing the first problem I stated below, I modified the runSolvedMaze() function to speed up to 400 when I want to run straight through an intersection (because I don't have to worry about calculations or the positioning of the sensors) and slow down to 300 and 250 when a turn is coming. (using the recorded array)
 
-### milestone7_incomplete
+### milestone7_incomplete version
+This is my attempt to beat my 13s method.
 * Fixed jerkyness. Found to be the zumo's attempt to follow a line while its sensors was messed up by the intersectino lines. Fixed by ignoring sensors for a short amount of time. 
 ```
   if (path[solved_path_location] == 'S') {
